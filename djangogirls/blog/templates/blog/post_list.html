@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h2>
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+            </h2>
+            {% if user.is_authenticated %}
+            <a onclick="return query_remove('{{post.title}}');"  href="{% url 'post_remove' pk=post.pk %}" class="glyphicon glyphicon-remove"></a>
+            {% endif %}
+            <p class="list-par">{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="{% url 'post_list' %}?index={{posts.previous_page_number}}">&lt;</a>
+            {% endif %}
+
+            <span class="current">
+                {{ posts.number }}
+            </span>
+
+            {% if posts.has_next %}
+                <a href="{% url 'post_list' %}?index={{posts.next_page_number}}">&gt;</a>
+            {% endif %}
+
+            <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;Total {{ posts.paginator.num_pages }} pages
+            </span>
+        </span>
+    </div>
+
+    <script type="text/javascript" language="JavaScript">
+        function query_remove(title)
+        {
+             if(confirm("confirm remove \"" + title + "\""))
+             {
+                 return true;
+             }else{
+                 return false;
+             }
+        }
+    </script>
+{% endblock %}

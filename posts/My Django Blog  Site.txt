@@ -1,0 +1,35 @@
+Django is widely used in developping web applications. I learned how to make a blog system by Django after learning courses in DjangoGirls.
+
+Django's website directory structure is very clear.
+
+Using the command: django-admin startproject mysite, Django will create a basic framework for a Web application for us.
+
+1. manage.py. Provides a variety of useful commands to interact with Django projects. For example, create a new site application, generate a database file, create an administrator account, etc.
+2. mysite/__init__.py. Empty file, used to identify this directory is a Python package.
+3. mysite/asgi.py. An ASGI compatible web server entry point to run your project.
+4. mysite/wsgi.py. A WSGI compatible web server entry point to run your project.
+5. mysite/settings.py. Project configuration file. For example, configure the time zone, language, database, and loaded applications.
+6. mysite/urls.py. The url configuration of the Django project can also be regarded as the "directory" of the website.
+
+Then, I use command: python manage.py startapp blog, to generate a new site application.
+
+The blog application is mainly divided into front-end and back-end.
+
+The front-end files are in the static and templates folders. static stores static resources, such as pictures, files, css, etc. Templates store html templates.
+
+The back-end logic code is under the blog folder, and its specific functions are as follows:
+
+1. blog/__init__.py. Empty file, used to identify this directory is a Python package.
+2. blog/admin.py. Register the back-end object. In this example, I registered a Post object.
+3. blog/app.py. The basic configuration of this application. In this example, I used the default and only set the name to blog.
+4. blog/models.py. Define the table fields of the database, you can also define some basic database operations.
+5. blog/tests.py. Some test cases for this application.
+6. blog/urls.py. The url configuration of this application.
+7. blog/views.py. The main logic of this application is responsible for some data access and logic processing.
+8. blog/forms.py. The basic form definition of blog, used to create and modify posts.
+
+In my opinion, the working method of the Django project is very clear and very convenient for us to use. Django has built a basic framework for us, and we mainly implement our page layout and background logic on it.
+
+When a front-end page needs to be loaded, Django will locate which application is processing the request according to mysite/urls.py, and then within the specific application, it will process the request according to which function urls.py locates. When processing requests, Django's embedded ORM framework is very convenient to use. After finishing the data access and logical processing, we then specify the returned data (html, json or other). If it is html, Django will generate html data based on the templates file and return it to the browser. Then the browser renders the html data we return to make the page we see.
+
+In general, Django is very powerful, and it feels very smooth to make web applications. I like this framework.

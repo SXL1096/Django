@@ -1,0 +1,35 @@
+Django做Web应用很广泛，我通过DjangoGirls学习了如何做一个博客系统。
+
+Django的网站目录结构很清晰。
+
+使用django-admin startproject mysite命令，Django会为我们创建一个Web应用的基础框架。包括：
+
+1. manage.py。提供了实用的多种命令，可以和Django项目进行交互。比如创建新的站内应用，生成数据库文件，创建管理员账户等。
+2. mysite/__init__.py。空文件，用于标识这个目录是一个Python包。
+3. mysite/asgi.py。一个 ASGI 兼容的 Web 服务器的入口，以便运行你的项目。
+4. mysite/wsgi.py。一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。
+5. mysite/settings.py。项目配置文件。比如配置时区，语言，数据库，加载的应用。
+6. mysite/urls.py。Django 项目的 url 配置，也可以看做是网站的“目录”。
+
+然后，我用python manage.py startapp blog命令，生成一个新的站内应用。
+
+blog应用主要分为前后端。
+
+前端文件在static和templates文件夹。static存放静态资源，比如图片，文件，css等。templates存放html模板。
+
+后端逻辑代码就在blog文件夹下，具体作用如下：
+
+1. blog/__init__.py。空文件，用于标识这个目录是一个Python包。
+2. blog/admin.py。注册后台的对象，在本例中，我注册了一个Post对象。
+3. blog/app.py。本应用的基础配置。本例中，我用了默认的，只设置了name为blog。
+4. blog/models.py。定义数据库的表字段，也可以定义一些基础的数据库操作。
+5. blog/tests.py。本应用的一些测试用例。
+6. blog/urls.py。本应用的url配置。
+7. blog/views.py。本应用的主要逻辑，负责一些数据存取和逻辑处理。
+8. blog/forms.py。blog的基础表单定义，用于创建和修改post。
+
+在我看来，Django项目的工作方式很清晰，也很方便我们使用。Django已经为我们搭建好了基础框架，我们主要在上面实现自己的页面布局和后台逻辑。
+
+当一个前端页面需要加载时，Django会根据mysite/urls.py定位到是哪个应用处理这个请求，然后在具体的应用内，再根据urls.py定位到哪个函数处理这个请求。处理请求时，Django内嵌的ORM框架使用非常方便。完成数据存取和逻辑处理后，我们再指定返回的数据（html，json或者其他）。如果是html，Django就会根据templates的文件，生成html数据，返回浏览器。那么浏览器渲染我们返回的html数据，就使我们看到的页面了。
+
+总的来说，Django很强大，做Web应用给我的感觉很顺畅，我挺喜欢这个框架的。
